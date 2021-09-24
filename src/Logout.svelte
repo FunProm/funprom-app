@@ -9,8 +9,6 @@
     }
 </script>
 
-<button on:click={handleSubmit}>Logout</button>
-
-<style>
-
-</style>
+<ion-button expand="block" on:click="{handleSubmit}" class="ion-no-margin">
+    Logout
+</ion-button>

@@ -3,34 +3,76 @@
 
     const dispatch = createEventDispatcher();
 
-    let username: string;
-    let password: string;
+    let username: string = "";
+    let password: string = "";
+
+    function handleUsernameValue(event) {
+        username = event.target.value;
+    }
+
+    function handlePasswordValue(event) {
+        password = event.target.value;
+    }
 
     function handleSubmit() {
-        dispatch('message', {
-            text: 'Login!'
-        });
+        if (username.length > 0 && password.length > 0) {
+            dispatch('message', {
+                text: 'Login!'
+            });
+        }
     }
 </script>
 
+<svelte:head>
+    <title>Login</title>
+</svelte:head>
 
-<input
-        bind:value={username}
-        type="text"
-        name="username"
-        placeholder="Username"
-/>
-<br/>
-<input
-        bind:value={password}
-        type="password"
-        name="password"
-        placeholder="Password"
-/>
-<br/>
-<button on:click={handleSubmit}>Login</button>
-<p>Don't have an account <a href="javascript:void(0)" on:click={handleSubmit}>Sign Up</a></p>
+<ion-header translucent="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Login</ion-title>
+    </ion-toolbar>
+</ion-header>
 
-<style>
+<ion-content fullscreen>
+    <form>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+                <ion-label position="stacked">
+                    Username
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input
+                        on:ionChange="{handleUsernameValue}"
+                        required
+                        type="text"
+                ></ion-input>
+            </ion-item>
 
-</style>
+            <ion-item>
+                <ion-label position="stacked">
+                    Password
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input
+                        on:ionChange="{handlePasswordValue}"
+                        required
+                        type="password"
+                ></ion-input>
+            </ion-item>
+        </ion-list>
+
+        <div class="ion-padding">
+            <ion-button expand="block" on:click="{handleSubmit}" class="ion-no-margin">
+                Login
+            </ion-button>
+            <br>
+            <ion-button color="light" expand="block" on:click="{handleSubmit}" class="ion-no-margin">
+                Sign Up
+            </ion-button>
+        </div>
+    </form>
+</ion-content>
+
