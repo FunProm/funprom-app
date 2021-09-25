@@ -3,6 +3,7 @@
     import CardItem from "./CardItem.svelte";
 
     const beUrl = 'https://fun-prom.herokuapp.com';
+    const userId = 4444; // TODO: make this dynamic
     let questions: Array<any> = Array();
 
     const fetchQuestions = async () => {
@@ -14,7 +15,7 @@
             }
         };
 
-        const response = await fetch(beUrl + '/question', options);
+        const response = await fetch(beUrl + '/question/' + userId, options);
         return await response.json();
     };
 
