@@ -22,7 +22,7 @@
                 <button ion-button color="primary" on:click="{handleTutorialEnd}">Skip</button>
             </div>
         </ion-toolbar>
-        <img src="../assets/img/slides/slide-1.png" alt="pict"/>
+        <img src="res/happy-to-see-you.jpg" alt="pict"/>
         <h2>Welcome!</h2>
         <p>We are happy to see you.</p>
     </ion-slide>
@@ -33,9 +33,9 @@
                 <button ion-button color="primary" on:click="{handleTutorialEnd}" >Skip</button>
             </div>
         </ion-toolbar>
-        <img src="../assets/img/slides/svelte.png" alt="pict"/>
-        <h2>Handy tool!</h2>
-        <p>Prom can be burdensome, therefore <b>FunProm</b> wants to make it easier for you. Just swipe to answer the
+        <img src="res/swipe.jpg" alt="pict"/>
+        <h2>Filling out PROMs made easy!</h2>
+        <p>Proms can be burdensome, therefore <b>FunProm</b> wants to make it easier for you. Just swipe to answer the
             questions.
             <br/>
             Additionally all answers get saved, so you can stop and come back whenever you wish</p>
@@ -45,17 +45,18 @@
         <div class="ion-text-end">
             <button ion-button color="primary" on:click="{handleTutorialEnd}">Skip</button>
         </div>
-        <img src="../assets/img/slides/slide-2.png" alt="pict"/>
-        <h2>What are the benefits of answering the questions?</h2>
-        <p>Research shows, that it can help you to get well soon and of course it's fun</p>
+        <img src="res/family_big.jpg"  alt="pict"/>
+        <h2>What are the benefits of answering all these questions?</h2>
+        <p>Taking PROMs leads to less frequent hospitalization and admission to the ER!
+            Text: Patients who dilligently complete their PROMs are admitted to the hospital less frequently. Let's all work together for you to spend more time with your loved ones sooner.</p>
     </ion-slide>
 
     <ion-slide>
-        <img src="../assets/img/slides/slide-4.png" alt="pict"/>
-        <h2>Ready to Play?</h2>
+        <img src="res/opinion.jpg"  alt="pict"/>
+        <h2>Ready to speed up your recovery?</h2>
         <p>Check out your progress to get an overview. <br/>
-            <ion-button on:click="{handleTutorialEnd}" fill="clear">
-                Or directly continue to earn points
+            <ion-button on:click="{handleTutorialEnd}" fill="clear" style="overflow: visible">
+                Or directly continue to the valuable questions
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
             </ion-button>
         </p>
@@ -78,12 +79,11 @@
 
     ion-slide > img {
         max-height: 50%;
-        max-width: 60%;
-        margin: 36px 0;
+        margin: 5px 0;
     }
 
     ion-slide > p {
-        padding: 0 40px;
+        padding: 0 5px;
         font-size: 14px;
         line-height: 1.5;
         color: #60646B;

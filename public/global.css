@@ -180,3 +180,11 @@
 .card-item {
 	background: #FFFFFF;
 }
+
+.swiper-pagination-bullet{
+	background:white!important;
+	border-radius: 100%;
+	height: 17px;
+	width: 17px;
+	display: none;
+}
