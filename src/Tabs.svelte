@@ -3,6 +3,7 @@
     import {navigate} from "svelte-routing";
     import Tutorial from "./Tutorial.svelte";
     import Logout from "./Logout.svelte";
+    import Progress from "./Progress.svelte";
 
     function handleTutorial(event) {
         navigate("/tutorial", {replace: true});
@@ -21,9 +22,16 @@
     </ion-tab>
 
     <ion-tab tab="tab-progress">
-        <ion-nav></ion-nav>
+        <ion-nav>
+            <Progress/>
+        </ion-nav>
     </ion-tab>
 
+    <ion-tab tab="tab-tutorial" component="page-tutorial">
+        <ion-nav>
+            <Tutorial/>
+        </ion-nav>
+    </ion-tab>
 
     <ion-tab tab="tab-logout">
         <ion-nav>
@@ -35,7 +43,7 @@
         <ion-tab-button tab="tab-schedule">
             <ion-icon name="calendar"></ion-icon>
             <ion-label>Schedule</ion-label>
-            <ion-badge>6</ion-badge>
+            <ion-badge>2</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button tab="tab-progress">

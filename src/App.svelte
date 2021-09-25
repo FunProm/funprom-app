@@ -2,10 +2,10 @@
     import {Router, Route, navigate} from "svelte-routing";
     import Login from "./Login.svelte";
     import Tutorial from "./Tutorial.svelte";
-    import CardStack from './CardStack.svelte';
     import Tabs from "./Tabs.svelte";
     import {getAuth, onAuthStateChanged} from "firebase/auth";
     import {session} from './stores';
+    import CardStackController from "./CardStackController.svelte";
 
     onAuthStateChanged(getAuth(), (user) => {
         if (user) {
@@ -30,6 +30,6 @@
         <Tutorial/>
     </Route>
     <Route path="/survey">
-        <CardStack></CardStack>
+        <CardStackController/>
     </Route>
 </Router>
