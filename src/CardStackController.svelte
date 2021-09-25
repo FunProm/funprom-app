@@ -9,7 +9,7 @@
     }
 
     function returnToStart() {
-        navigate("/loggedIn", {replace: true});
+        navigate("/", {replace: true});
     }
 
 </script>
