@@ -4,19 +4,22 @@ export const getRandomNudge = function () {
             type: "nudge",
             title: "Completing PROM improves overall quality of life!",
             text: "Patients who have completed their PROMs regularly are known to enjoy a higher quality of life! Thanks to the detailed info provided by them, their doctors better know how to adjust the patient's individual treatment.",
-            imageUrl: "https://cdn.pixabay.com/photo/2013/02/21/19/10/mother-84628_1280.jpg"
+            imageUrl: "https://cdn.pixabay.com/photo/2013/02/21/19/10/mother-84628_1280.jpg",
+            number: "nudge"
         },
         {
             type: "nudge",
             title: "Taking PROMs improves patient-provider communication!",
             text: "A good relationship between doctors and patients is paramount for a speedy and successful recovery, and taking PROMs encourages your health care providers to monitor your progress more closely and foster mutual understanding.",
-            imageUrl: "https://cdn.pixabay.com/photo/2020/11/02/19/52/doctor-5707722_1280.jpg"
+            imageUrl: "https://cdn.pixabay.com/photo/2020/11/02/19/52/doctor-5707722_1280.jpg",
+            number: "nudge"
         },
         {
             type: "nudge",
             title: "Taking PROMs leads to less frequent hospitalization and admission to the ER!",
             text: "Patients who dilligently complete their PROMs are admitted to the hospital less frequently. Let's all work together for you to spend more time with your loved ones sooner.",
-            imageUrl: "https://cdn.pixabay.com/photo/2017/10/03/01/12/family-2811003_1280.jpg"
+            imageUrl: "https://cdn.pixabay.com/photo/2017/10/03/01/12/family-2811003_1280.jpg",
+            number: "nudge"
         }];
 
     return nudges[getRandomInt(0, nudges.length)];

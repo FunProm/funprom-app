@@ -32,7 +32,7 @@
 
     .back-button {
         position: absolute;
-        bottom: 2em;
+        bottom: 1em;
         display: flex;
         justify-content: center;
         width: calc(100% - 2em)
