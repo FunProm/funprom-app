@@ -1,5 +1,6 @@
 <script lang="ts">
     import {onMount} from 'svelte';
+    import CardItem from "./CardItem.svelte";
 
     onMount(async () => {
         renderStackedCards()
@@ -11,224 +12,35 @@
     <div class="card-stack-view">
         <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
             <div class="stackedcards-container">
-
-                <div class="card-item"></div>
-                <div class="card-item"></div>
-                <div class="card-item"></div>
-                <div class="card-item"></div>
-                <div class="card-item"></div>
-                <div class="card-item"></div>
-                <div class="card-item"></div>
+                <CardItem>Do you have any trouble doing strenuous activities, like carrying a heavy shopping bag or a
+                    suitcase?
+                </CardItem>
+                <CardItem>Do you have any trouble taking a long walk?</CardItem>
+                <CardItem>Do you have any trouble taking a short walk outside of the house?</CardItem>
+                <CardItem type="info">Did you know that...</CardItem>
+                <CardItem>Do you need to stay in bed or a chair during the day?</CardItem>
+                <CardItem type="done">Whheop you're done!</CardItem>
 
             </div>
-            <div class="stackedcards--animatable stackedcards-overlay top">TOP</div>
-            <div class="stackedcards--animatable stackedcards-overlay right">RIGHT</div>
-            <div class="stackedcards--animatable stackedcards-overlay left">LEFT</div>
-            <div class="stackedcards--animatable stackedcards-overlay bottom">BOTTOM</div>
+            <div class="stackedcards--animatable stackedcards-overlay top">A little</div>
+            <div class="stackedcards--animatable stackedcards-overlay right">Not at all</div>
+            <div class="stackedcards--animatable stackedcards-overlay left">Very much</div>
+            <div class="stackedcards--animatable stackedcards-overlay bottom">Quite a bit</div>
         </div>
         <div class="global-actions">
-            <div class="left-action">Left</div>
-            <div class="top-action">Top</div>
-            <div class="right-action">Right</div>
-            <div class="bottom-action">Bottom</div>
+            <div class="left-action">Very much</div>
+            <div class="top-action">A little</div>
+            <div class="right-action">Not at all</div>
+            <div class="bottom-action">Quite a bit</div>
+        </div>
+        <div class="global-actions">
+            <div class="skip-action">Skip</div>
         </div>
     </div>
 </main>
 
 
 <style>
-    .card-stack-view {
-        overflow-x: hidden;
-        font-family: "Open Sans", sans-serif;
-        font-size: 12px;
-        background: #BFC7D0;
-        padding: 15%;
-        height: 100vh;
-    }
 
-
-    .no-transition {
-        -webkit-transition: none ! important;
-        -o-transition: none ! important;
-        transition: none ! important;
-    }
-
-    .stackedcards-overflow {
-        overflow-y: hidden !important;
-    }
-
-    .stackedcards.init {
-        opacity: 0; /* set the opacity to 0 if you want a fade-in effect to stacked cards on page load */
-    }
-
-    .stackedcards {
-        position: relative;
-    }
-
-    .stackedcards * {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .stackedcards--animatable {
-        -webkit-transition: all 400ms ease;
-        -o-transition: all 400ms ease;
-        transition: all 400ms ease;
-    }
-
-    .stackedcards .stackedcards-container > *,
-    .stackedcards-overlay {
-        position: absolute;
-        width: 100%; /* set 100% */
-        height: 300px; /* set 100% */
-        will-change: transform, opacity;
-        top: 0;
-        border-radius: 10px;
-    }
-
-    .stackedcards-overlay.left > div,
-    .stackedcards-overlay.right > div,
-    .stackedcards-ovedrlay.top > div,
-    .stackedcards-ovedrlay.bottom > div {
-        width: 100%;
-        height: 100%;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
-
-    .stackedcards-overlay.left,
-    .stackedcards-overlay.right,
-    .stackedcards-overlay.top,
-    .stackedcards-overlay.bottom {
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        left: 0;
-        opacity: 0;
-        top: 0;
-        height: 100%;
-        font-size: 24px; /* this style was added only for better preview */
-        text-transform: uppercase; /* this style was added only for better preview */
-        font-weight: 500; /* this style was added only for better preview */
-        color: #fff; /* this style was added only for better preview */
-    }
-
-    .stackedcards-overlay.top {
-        background: #E38568;
-    }
-
-    .stackedcards-overlay.right {
-        background: #7BB3C5;
-    }
-
-    .stackedcards-overlay.left {
-        background: #E58D93;
-    }
-
-    .stackedcards-overlay.bottom {
-        background: #be68e3;
-    }
-
-    .stackedcards-overlay.left:empty,
-    .stackedcards-overlay.right:empty,
-    .stackedcards-overlay.top:empty,
-    .stackedcards-overlay.bottom:empty {
-        display: none !important;
-    }
-
-    .stackedcards-overlay-hidden {
-        display: none;
-    }
-
-    .stackedcards-origin-bottom {
-        -webkit-transform-origin: bottom;
-        -ms-transform-origin: bottom;
-        transform-origin: bottom;
-    }
-
-    .stackedcards-origin-top {
-        -webkit-transform-origin: top;
-        -ms-transform-origin: top;
-        transform-origin: top;
-    }
-
-    .stackedcards-bottom,
-    .stackedcards-top,
-    .stackedcards-none {
-        background: #fff; /* set card background background */
-        height: 100%;
-    }
-
-    .stackedcards .stackedcards-container > :nth-child(1) {
-        position: relative;
-        display: block;
-    }
-
-    /* global actions buttons*/
-    .global-actions {
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
-        display: inline-flex;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .top-action,
-    .right-action,
-    .left-action,
-    .bottom-action {
-        width: 100%;
-        height: 50px;
-        border-radius: 10px;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        text-transform: uppercase;
-        font-weight: 500;
-        color: #fff;
-        margin: 4px;
-    }
-
-    .top-action {
-        background: #E38568;
-    }
-
-    .right-action {
-        background: #7BB3C5;
-    }
-
-    .left-action {
-        background: #E58D93;
-    }
-
-    .bottom-action {
-        background: #be68e3;
-    }
-
-    /* elements on stacked cards */
-    .card-item {
-        background: #FFFFFF;
-    }
 
 </style>
