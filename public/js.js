@@ -1,4 +1,4 @@
-function renderStackedCards() {
+function renderStackedCards(questions) {
     var stackedOptions = 'Top'; //Change stacked cards view from 'Bottom', 'Top' or 'None'.
     var rotate = true; //Activate the elements' rotation for each move on stacked cards.
     var items = 3; //Number of visible elements when the stacked options are bottom or top.
@@ -20,6 +20,8 @@ function renderStackedCards() {
     var obj;
     var elTrans;
     var addMargin;
+
+    let questionIndex = 0;
 
     obj = document.getElementById('stacked-cards-block');
     stackedCardsObj = obj.querySelector('.stackedcards-container');
@@ -222,6 +224,7 @@ function renderStackedCards() {
 
     //Swipe active card to left.
     function onSwipeLeft() {
+        sendAnswer("very much");
         removeNoTransition();
         transformUi(-1000, 0, 0, currentElementObj);
         if (useOverlays) {
@@ -238,6 +241,7 @@ function renderStackedCards() {
 
     //Swipe active card to right.
     function onSwipeRight() {
+        sendAnswer("not at all");
         removeNoTransition();
         transformUi(1000, 0, 0, currentElementObj);
         if (useOverlays) {
@@ -255,6 +259,7 @@ function renderStackedCards() {
 
     //Swipe active card to top.
     function onSwipeTop() {
+        sendAnswer("a little");
         removeNoTransition();
         transformUi(0, -1000, 0, currentElementObj);
         if (useOverlays) {
@@ -272,6 +277,7 @@ function renderStackedCards() {
 
     //Swipe active card to bottom.
     function onSwipeBottom() {
+        sendAnswer("quite a bit");
         removeNoTransition();
         transformUi(0, 1000, 0, currentElementObj);
         if (useOverlays) {
@@ -780,4 +786,20 @@ function renderStackedCards() {
     buttonRight.addEventListener('click', onActionRight, false);
     buttonBottom.addEventListener('click', onActionBottom, false);
 
+    async function sendAnswer(answer){
+        const url = 'https://fun-prom.herokuapp.com/question/4444';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            body: JSON.stringify({
+                number: questions[questionIndex].number,
+                answer
+            })
+        };
+        await fetch(url, options);
+        questionIndex++;
+    }
 }
