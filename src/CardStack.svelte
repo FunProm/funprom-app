@@ -1,10 +1,11 @@
 <script lang="ts">
     import {createEventDispatcher, onMount} from 'svelte';
     import CardItem from "./CardItem.svelte";
+    import {getRandomNudge, mapCategoryToString} from './utils/utils'
 
     const beUrl = 'https://fun-prom.herokuapp.com';
     const userId = 4444; // TODO: make this dynamic
-    let questions: Array<any> = Array();
+    let questions: Array<{type, title, category, text, imageUrl  }> = [];
 
     const dispatch = createEventDispatcher();
 
@@ -25,15 +26,18 @@
         };
 
         const response = await fetch(beUrl + '/question/' + userId, options);
-        return await response.json();
+        return response.json();
     };
 
     onMount(async () => {
         questions = await fetchQuestions();
-        if(questions.length === 1 && questions[0].number === undefined){
-            console.log('no more questions');
-            return;
-        }
+        questions = questions.map(value => ({
+            ...value,
+            category: mapCategoryToString(value.category),
+            type: "question"
+        }));
+        questions.push(getRandomNudge());
+        console.log(questions)
         setTimeout(function(){ renderStackedCards(questions, handleLastCard) }, 100);
     });
 
@@ -43,10 +47,8 @@
     <div class="card-stack-view">
         <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
             <div class="stackedcards-container">
-                {#each questions as question}
-                    <CardItem>
-                        {question.question}
-                    </CardItem>
+                {#each questions as question, index}
+                    <CardItem item={question} nr={index+1} of={questions.length}/>
                 {/each}
             </div>
             <div class="stackedcards--animatable stackedcards-overlay top">A little</div>
@@ -58,8 +60,8 @@
         <div class="global-actions">
             <div class="left-action">Very much</div>
             <div class="top-action">A little</div>
-            <div class="right-action">Not at all</div>
             <div class="bottom-action">Quite a bit</div>
+            <div class="right-action">Not at all</div>
         </div>
         <div class="global-actions">
             <div class="skip-action">Skip</div>
