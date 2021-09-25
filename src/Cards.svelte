@@ -7,11 +7,11 @@
 </script>
 
 <svelte:head>
-    <title>FunProm - Cards</title>
+    <title>FunProm - Dashboard</title>
 </svelte:head>
 <ion-header translucent="true">
     <ion-toolbar>
-        <ion-title>Cards</ion-title>
+        <ion-title>Dashboard</ion-title>
     </ion-toolbar>
 </ion-header>
 
