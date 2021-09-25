@@ -3,18 +3,46 @@
         <ion-title>Progress</ion-title>
     </ion-toolbar>
 </ion-header>
-
-<ion-content>
+<ion-content fullscreen>
+    <ion-text>
+        <h1>LEVEL 5</h1>
+    </ion-text>
+    <br>
     <ion-list>
+        <ion-list-header>Achievements</ion-list-header>
+
         <ion-item>
-            <ion-label>August survey completed</ion-label>
-            <img src="res/award_small.png" />
+            <ion-avatar slot="start">
+                <img src="res/award_small.png"/>
+            </ion-avatar>
+            <ion-label>
+                <h2>August</h2>
+                <p>August survey completed</p>
+            </ion-label>
         </ion-item>
         <ion-item>
-            <ion-label>Answered questions every week</ion-label>
+            <ion-avatar slot="start">
+                <img src="res/alpaca.jpg"/>
+            </ion-avatar>
+            <ion-label>
+                <h2>Every Week</h2>
+                <p>Answered questions every week</p>
+            </ion-label>
         </ion-item>
         <ion-item>
-            <ion-label>Answered questions in five categories</ion-label>
+            <ion-avatar slot="start">
+                <img src="res/five.png"/>
+            </ion-avatar>
+            <ion-label>
+                <h2>Five Categories</h2>
+                <p>Answered questions in five categories</p>
+            </ion-label>
         </ion-item>
     </ion-list>
 </ion-content>
+
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
