@@ -3,7 +3,6 @@
     import CardItem from "./CardItem.svelte";
     import {getRandomNudge, mapCategoryToString} from './utils/utils'
     import {navigate} from "svelte-routing";
-    import {category} from "./WellDone.svelte";
 
     const beUrl = 'https://fun-prom.herokuapp.com';
     const userId = 4444; // TODO: make this dynamic
