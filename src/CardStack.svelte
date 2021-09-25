@@ -21,6 +21,10 @@
 
     onMount(async () => {
         questions = await fetchQuestions();
+        if(questions.length === 1 && questions[0].number === undefined){
+            console.log('no more questions');
+            return;
+        }
         setTimeout(function(){ renderStackedCards(questions) }, 100);
     });
 
