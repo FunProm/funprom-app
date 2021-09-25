@@ -5,8 +5,8 @@
     import {navigate} from "svelte-routing";
 
     export let url = "";
-    import CardStack from './CardStack.svelte';
     import Tabs from "./Tabs.svelte";
+    import CardStackController from "./CardStackController.svelte";
 
     let user = {loggedIn: false};
 
@@ -28,6 +28,6 @@
         <Tutorial/>
     </Route>
     <Route path="/survey">
-        <CardStack></CardStack>
+        <CardStackController/>
     </Route>
 </Router>
