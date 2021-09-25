@@ -2,15 +2,10 @@
     import Cards from "./Cards.svelte";
     import {navigate} from "svelte-routing";
     import Tutorial from "./Tutorial.svelte";
+    import Logout from "./Logout.svelte";
     import Progress from "./Progress.svelte";
 
-    function handleLogout(event) {
-        console.log(event.detail.text);
-        navigate("/", {replace: true});
-    }
-
     function handleTutorial(event) {
-        console.log(event.detail.text);
         navigate("/tutorial", {replace: true});
     }
 </script>
@@ -38,8 +33,10 @@
         </ion-nav>
     </ion-tab>
 
-    <ion-tab tab="tab-logout" component="page-logout">
-        <ion-nav></ion-nav>
+    <ion-tab tab="tab-logout">
+        <ion-nav>
+            <Logout/>
+        </ion-nav>
     </ion-tab>
 
     <ion-tab-bar slot="bottom">
@@ -54,12 +51,12 @@
             <ion-label>Progress</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab-tutorial" on:click="{handleTutorial}">
+        <ion-tab-button on:click={handleTutorial}>
             <ion-icon name="information-circle"></ion-icon>
             <ion-label>Tutorial</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab-logout" on:click="{handleLogout}">
+        <ion-tab-button tab="tab-logout">
             <ion-icon name="key-outline"></ion-icon>
             <ion-label>Logout</ion-label>
         </ion-tab-button>

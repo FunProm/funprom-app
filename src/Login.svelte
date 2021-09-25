@@ -1,10 +1,11 @@
 <script lang="ts">
-    import {createEventDispatcher} from 'svelte';
-
-    const dispatch = createEventDispatcher();
+    import {auth} from './utils/firebase';
+    import {signInWithEmailAndPassword} from "@firebase/auth";
+    import {navigate} from "svelte-routing";
 
     let username: string = "";
     let password: string = "";
+    let errorMessage: string = "";
 
     function handleUsernameValue(event) {
         username = event.target.value;
@@ -14,11 +15,12 @@
         password = event.target.value;
     }
 
-    function handleSubmit() {
-        if (username.length > 0 && password.length > 0) {
-            dispatch('message', {
-                text: 'Login!'
-            });
+    async function handleSubmit() {
+        try {
+            await signInWithEmailAndPassword(auth, username, password);
+            navigate("/tutorial", {replace: true});
+        } catch (e) {
+            errorMessage = e.message;
         }
     }
 </script>
