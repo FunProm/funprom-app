@@ -40,6 +40,7 @@
             <div class="stackedcards--animatable stackedcards-overlay right">Not at all</div>
             <div class="stackedcards--animatable stackedcards-overlay left">Very much</div>
             <div class="stackedcards--animatable stackedcards-overlay bottom">Quite a bit</div>
+            <div class="stackedcards--animatable stackedcards-overlay skipped">Skipped</div>
         </div>
         <div class="global-actions">
             <div class="left-action">Very much</div>

@@ -11,6 +11,7 @@ function renderStackedCards(questions) {
     var bottomObj; //Keep the swipe bottom properties.
     var rightObj; //Keep the swipe right properties.
     var leftObj; //Keep the swipe left properties.
+    var skipObj; //Keep the swipe left properties.
     var listElNodesObj; //Keep the list of nodes from stacked cards.
     var listElNodesWidth; //Keep the stacked cards width.
     var currentElementObj; //Keep the stacked card element to swipe.
@@ -31,6 +32,7 @@ function renderStackedCards(questions) {
     rightObj = obj.querySelector('.stackedcards-overlay.right');
     leftObj = obj.querySelector('.stackedcards-overlay.left');
     bottomObj = obj.querySelector('.stackedcards-overlay.bottom');
+    skipObj = obj.querySelector('.stackedcards-overlay.skipped');
 
     countElements();
     currentElement();
@@ -96,16 +98,21 @@ function renderStackedCards(questions) {
         bottomObj.style.transform = 'translateX(0px) translateY(' + elTrans + 'px) translateZ(0px) rotate(0deg)';
         bottomObj.style.webkitTransform = 'translateX(0px) translateY(' + elTrans + 'px) translateZ(0px) rotate(0deg)';
 
+        skipObj.style.transform = 'translateX(0px) translateY(' + elTrans + 'px) translateZ(0px) rotate(0deg)';
+        skipObj.style.webkitTransform = 'translateX(0px) translateY(' + elTrans + 'px) translateZ(0px) rotate(0deg)';
+
     } else {
         leftObj.className = '';
         rightObj.className = '';
         topObj.className = '';
         bottomObj.className = '';
+        skipObj.className = '';
 
         leftObj.classList.add('stackedcards-overlay-hidden');
         rightObj.classList.add('stackedcards-overlay-hidden');
         topObj.classList.add('stackedcards-overlay-hidden');
         bottomObj.classList.add('stackedcards-overlay-hidden');
+        skipObj.classList.add('stackedcards-skipped-hidden');
     }
 
     //Remove class init
@@ -124,6 +131,7 @@ function renderStackedCards(questions) {
             transformUi(0, 0, 0, rightObj);
             transformUi(0, 0, 0, topObj);
             transformUi(0, 0, 0, bottomObj);
+            transformUi(0, 0, 0, skipObj);
         }
 
         setZindex(5);
@@ -156,6 +164,7 @@ function renderStackedCards(questions) {
                 leftObj.classList.remove('no-transition');
                 topObj.classList.remove('no-transition');
                 bottomObj.classList.remove('no-transition');
+                skipObj.classList.remove('no-transition');
                 leftObj.style.zIndex = '8';
                 transformUi(0, 0, 1, leftObj);
 
@@ -175,6 +184,7 @@ function renderStackedCards(questions) {
                 rightObj.classList.remove('no-transition');
                 topObj.classList.remove('no-transition');
                 bottomObj.classList.remove('no-transition');
+                skipObj.classList.remove('no-transition');
                 rightObj.style.zIndex = '8';
                 transformUi(0, 0, 1, rightObj);
             }
@@ -192,6 +202,7 @@ function renderStackedCards(questions) {
             if (useOverlays) {
                 leftObj.classList.remove('no-transition');
                 rightObj.classList.remove('no-transition');
+                skipObj.classList.remove('no-transition');
                 topObj.classList.remove('no-transition');
                 topObj.style.zIndex = '8';
                 transformUi(0, 0, 1, topObj);
@@ -210,6 +221,7 @@ function renderStackedCards(questions) {
             if (useOverlays) {
                 leftObj.classList.remove('no-transition');
                 rightObj.classList.remove('no-transition');
+                skipObj.classList.remove('no-transition');
                 bottomObj.classList.remove('no-transition');
                 bottomObj.style.zIndex = '8';
                 transformUi(0, 0, 1, bottomObj);
@@ -217,6 +229,38 @@ function renderStackedCards(questions) {
 
             setTimeout(function () {
                 onSwipeBottom();
+                resetOverlays();
+            }, 300); //wait animations end
+        }
+    }
+
+    function onActionSkip() {
+        if (!(currentPosition >= maxElements)) {
+            if (useOverlays) {
+                leftObj.classList.remove('no-transition');
+                rightObj.classList.remove('no-transition');
+                skipObj.classList.remove('no-transition');
+                topObj.classList.remove('no-transition');
+                skipObj.style.zIndex = '8';
+                transformUi(0, 0, 1, skipObj);
+            }
+
+            setTimeout(function () {
+                sendAnswer("skipped");
+                removeNoTransition();
+                transformUi(0, -1000, 0, currentElementObj);
+                if (useOverlays) {
+                    transformUi(0, -1000, 0, leftObj); //Move leftOverlay
+                    transformUi(0, -1000, 0, rightObj); //Move rightOverlay
+                    transformUi(0, -1000, 0, topObj); //Move topOverlay
+                    transformUi(0, -1000, 0, skipObj); //Move skipOverlay
+                    resetOverlays();
+                }
+
+                currentPosition = currentPosition + 1;
+                updateUi();
+                currentElement();
+                setActiveHidden();
                 resetOverlays();
             }, 300); //wait animations end
         }
@@ -231,6 +275,7 @@ function renderStackedCards(questions) {
             transformUi(-1000, 0, 0, leftObj); //Move leftOverlay
             transformUi(-1000, 0, 0, topObj); //Move topOverlay
             transformUi(-1000, 0, 0, bottomObj); //Move bottomOverlay
+            transformUi(-1000, 0, 0, skipObj); //Move skipOverlay
             resetOverlayLeft();
         }
         currentPosition = currentPosition + 1;
@@ -248,6 +293,7 @@ function renderStackedCards(questions) {
             transformUi(1000, 0, 0, rightObj); //Move rightOverlay
             transformUi(1000, 0, 0, topObj); //Move topOverlay
             transformUi(1000, 0, 0, bottomObj); //Move bottomOverlay
+            transformUi(1000, 0, 0, skipObj); //Move skipOverlay
             resetOverlayRight();
         }
 
@@ -266,6 +312,7 @@ function renderStackedCards(questions) {
             transformUi(0, -1000, 0, leftObj); //Move leftOverlay
             transformUi(0, -1000, 0, rightObj); //Move rightOverlay
             transformUi(0, -1000, 0, topObj); //Move topOverlay
+            transformUi(0, -1000, 0, skipObj); //Move skipOverlay
             resetOverlays();
         }
 
@@ -284,6 +331,7 @@ function renderStackedCards(questions) {
             transformUi(0, 1000, 0, leftObj); //Move leftOverlay
             transformUi(0, 1000, 0, rightObj); //Move rightOverlay
             transformUi(0, 1000, 0, bottomObj); //Move bottomOverlay
+            transformUi(0, 1000, 0, skipObj); //Move skipOverlay
             resetOverlays();
         }
 
@@ -302,6 +350,7 @@ function renderStackedCards(questions) {
                 rightObj.classList.remove('no-transition');
                 topObj.classList.remove('no-transition');
                 bottomObj.classList.remove('no-transition');
+                skipObj.classList.remove('no-transition');
             }
 
             listElNodesObj[currentPosition].classList.remove('no-transition');
@@ -331,7 +380,7 @@ function renderStackedCards(questions) {
                         leftObj.classList.add('no-transition');
                         topObj.classList.add('no-transition');
                         bottomObj.classList.add('no-transition');
-
+                        skipObj.classList.add('no-transition');
                     }
 
                     requestAnimationFrame(function () {
@@ -347,6 +396,10 @@ function renderStackedCards(questions) {
                         bottomObj.style.transform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
                         bottomObj.style.webkitTransform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
                         bottomObj.style.opacity = '0';
+
+                        skipObj.style.transform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
+                        skipObj.style.webkitTransform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
+                        skipObj.style.opacity = '0';
 
                     });
 
@@ -378,6 +431,7 @@ function renderStackedCards(questions) {
                         rightObj.classList.add('no-transition');
                         topObj.classList.add('no-transition');
                         bottomObj.classList.add('no-transition');
+                        skipObj.classList.add('no-transition');
 
                     }
 
@@ -394,6 +448,10 @@ function renderStackedCards(questions) {
                         bottomObj.style.transform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
                         bottomObj.style.webkitTransform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
                         bottomObj.style.opacity = '0';
+
+                        skipObj.style.transform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
+                        skipObj.style.webkitTransform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
+                        skipObj.style.opacity = '0';
 
                     });
 
@@ -426,6 +484,7 @@ function renderStackedCards(questions) {
                         rightObj.classList.add('no-transition');
                         topObj.classList.add('no-transition');
                         bottomObj.classList.add('no-transition');
+                        skipObj.classList.add('no-transition');
 
                     }
 
@@ -446,6 +505,10 @@ function renderStackedCards(questions) {
                         bottomObj.style.transform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
                         bottomObj.style.webkitTransform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
                         bottomObj.style.opacity = '0';
+
+                        skipObj.style.transform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
+                        skipObj.style.webkitTransform = "translateX(0) translateY(" + elTrans + "px) translateZ(0)";
+                        skipObj.style.opacity = '0';
 
                     });
 
@@ -542,6 +605,7 @@ function renderStackedCards(questions) {
                             rightObj.classList.add('stackedcards-origin-top');
                             topObj.classList.add('stackedcards-origin-top');
                             bottomObj.classList.add('stackedcards-origin-top');
+                            skipObj.classList.add('stackedcards-origin-top');
                         }
 
                         elTrans = elTransInc * elTransTop;
@@ -555,6 +619,7 @@ function renderStackedCards(questions) {
                             rightObj.classList.add('stackedcards-origin-bottom');
                             topObj.classList.add('stackedcards-origin-bottom');
                             bottomObj.classList.add('stackedcards-origin-bottom');
+                            skipObj.classList.add('stackedcards-origin-bottom');
                         }
 
                         elTrans = elTrans + elTransInc;
@@ -643,6 +708,7 @@ function renderStackedCards(questions) {
                     rightObj.classList.add('no-transition');
                     topObj.classList.add('no-transition');
                     bottomObj.classList.add('no-transition');
+                    skipObj.classList.add('no-transition');
                 }
 
                 if ((currentPosition + 1) < maxElements) {
@@ -671,7 +737,7 @@ function renderStackedCards(questions) {
 
             if (useOverlays) {
 					transformUi(translateX, translateY, topOpacity, topObj);
-					transformUi(translateX, translateY, bottomOpacity, bottomObj);
+					transformUi(translateX, translateY, bottomOpacity, bottomObj, skipObj);
 
                 if (translateX < 0) {
                     transformUi(translateX, translateY, leftOpacity, leftObj);
@@ -687,6 +753,7 @@ function renderStackedCards(questions) {
                     rightObj.style.zIndex = 8;
                     topObj.style.zIndex = 7;
                     bottomObj.style.zIndex = 7;
+                    skipObj.style.zIndex = 7;
                 }
 
             }
@@ -780,11 +847,13 @@ function renderStackedCards(questions) {
     var buttonTop = document.querySelector('.top-action');
     var buttonRight = document.querySelector('.right-action');
     var buttonBottom = document.querySelector('.bottom-action');
+    var buttonSkip = document.querySelector('.skip-action');
 
     buttonLeft.addEventListener('click', onActionLeft, false);
     buttonTop.addEventListener('click', onActionTop, false);
     buttonRight.addEventListener('click', onActionRight, false);
     buttonBottom.addEventListener('click', onActionBottom, false);
+    buttonSkip.addEventListener('click', onActionSkip, false);
 
     async function sendAnswer(answer){
         const url = 'https://fun-prom.herokuapp.com/question/4444';
