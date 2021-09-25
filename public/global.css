@@ -51,8 +51,9 @@
 
 .stackedcards-overlay.left > div,
 .stackedcards-overlay.right > div,
-.stackedcards-ovedrlay.top > div,
-.stackedcards-ovedrlay.bottom > div {
+.stackedcards-overlay.top > div,
+.stackedcards-overlay.skipped > div,
+.stackedcards-overlay.bottom > div {
 	width: 100%;
 	height: 100%;
 	-webkit-box-align: center;
@@ -69,6 +70,7 @@
 .stackedcards-overlay.left,
 .stackedcards-overlay.right,
 .stackedcards-overlay.top,
+.stackedcards-overlay.skipped,
 .stackedcards-overlay.bottom {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
@@ -105,14 +107,15 @@
 	background: #a88d2d;
 }
 
-.skip-action {
+.stackedcards-overlay.skipped, .skip-action {
 	background: #2d9bf3;
 }
 
 .stackedcards-overlay.left:empty,
 .stackedcards-overlay.right:empty,
 .stackedcards-overlay.top:empty,
-.stackedcards-overlay.bottom:empty {
+.stackedcards-overlay.skipped:empty,
+.stackedcards-overla§y.bottom:empty {
 	display: none !important;
 }
 
