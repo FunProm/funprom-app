@@ -2,8 +2,25 @@
     import {onMount} from 'svelte';
     import CardItem from "./CardItem.svelte";
 
+    const beUrl = 'https://fun-prom.herokuapp.com';
+    let questions: Array<any> = Array();
+
+    const fetchQuestions = async () => {
+        const options = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8'
+            }
+        };
+
+        const response = await fetch(beUrl + '/question', options);
+        return await response.json();
+    };
+
     onMount(async () => {
-        renderStackedCards()
+        questions = await fetchQuestions();
+        setTimeout(function(){ renderStackedCards() }, 100);
     });
 
 </script>
@@ -12,15 +29,11 @@
     <div class="card-stack-view">
         <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
             <div class="stackedcards-container">
-                <CardItem>Do you have any trouble doing strenuous activities, like carrying a heavy shopping bag or a
-                    suitcase?
-                </CardItem>
-                <CardItem>Do you have any trouble taking a long walk?</CardItem>
-                <CardItem>Do you have any trouble taking a short walk outside of the house?</CardItem>
-                <CardItem type="info">Did you know that...</CardItem>
-                <CardItem>Do you need to stay in bed or a chair during the day?</CardItem>
-                <CardItem type="done">Whheop you're done!</CardItem>
-
+                {#each questions as question}
+                    <CardItem>
+                        {question.question}
+                    </CardItem>
+                {/each}
             </div>
             <div class="stackedcards--animatable stackedcards-overlay top">A little</div>
             <div class="stackedcards--animatable stackedcards-overlay right">Not at all</div>
