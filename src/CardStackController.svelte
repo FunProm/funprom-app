@@ -19,7 +19,7 @@
 {:else }
     <div class="main">
         <div class="top">
-            <img src="res/thumbs_up.jpg"/>
+            <img src="res/thumbs_up.jpg" alt=""/>
             <h1>
                 Great job!
             </h1>

@@ -24,7 +24,7 @@
 
         <ion-card-content>
             <ion-avatar slot="start">
-                <img src="https://img.icons8.com/doodle/50/000000/80-percents.png"/>
+                <img src="https://img.icons8.com/doodle/50/000000/80-percents.png" alt=""/>
             </ion-avatar>
             <br>
             <b>Click to continue</b>
@@ -39,7 +39,7 @@
 
         <ion-card-content>
             <ion-avatar slot="start">
-                <img src="https://img.icons8.com/doodle/50/000000/0-percents.png"/>
+                <img src="https://img.icons8.com/doodle/50/000000/0-percents.png" alt=""/>
             </ion-avatar>
             <br>
             <b>Click to Start</b>

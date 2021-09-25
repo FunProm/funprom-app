@@ -1,8 +1,28 @@
 <script>
-    import {link, Router} from "svelte-routing";
+    import {navigate} from "svelte-routing";
 
     export let category;
     import {mapCategoryToString} from "./utils/utils";
+
+    const userId = 4444
+    const beUrl = "https://fun-prom.herokuapp.com"
+
+    async function backToDashboard() {
+        await resetDataForUser();
+        navigate("/")
+    }
+
+    async function resetDataForUser() {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8'
+            }
+        };
+        const response = await fetch(beUrl + '/question/' + userId, options);
+        console.debug(`Successfully reset data. Status: ${response.status}`)
+    }
 </script>
 
 
@@ -13,15 +33,11 @@
 </ion-header>
 
 <div class="well-done-container">
-    <img src="/res/board.jpg" class="well-done-element" alt="image"/>
+    <img src="/res/board.jpg" class="well-done-element" alt=""/>
     <div class="well-done-eleme nt">You have answered all questions of the
         category {mapCategoryToString(category)}</div>
-    <div class="back-button">
-        <Router>
-            <a href="/" use:link>
-                <ion-button>Back to Dashboard</ion-button>
-            </a>
-        </Router>
+    <div class="back-button" on:click={backToDashboard}>
+        <ion-button>Back to Dashboard</ion-button>
     </div>
 </div>
 

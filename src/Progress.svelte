@@ -13,7 +13,7 @@
 
         <ion-item>
             <ion-avatar slot="start">
-                <img src="res/award_small.png"/>
+                <img src="res/award_small.png" alt=""/>
             </ion-avatar>
             <ion-label>
                 <h2>August</h2>
@@ -22,7 +22,7 @@
         </ion-item>
         <ion-item>
             <ion-avatar slot="start">
-                <img src="res/alpaca.jpg"/>
+                <img src="res/alpaca.jpg" alt=""/>
             </ion-avatar>
             <ion-label>
                 <h2>Every Week</h2>
@@ -31,7 +31,7 @@
         </ion-item>
         <ion-item>
             <ion-avatar slot="start">
-                <img src="res/five.png"/>
+                <img src="res/five.png" alt=""/>
             </ion-avatar>
             <ion-label>
                 <h2>Five Categories</h2>
