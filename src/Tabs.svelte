@@ -2,6 +2,7 @@
     import Cards from "./Cards.svelte";
     import {navigate} from "svelte-routing";
     import Tutorial from "./Tutorial.svelte";
+    import Progress from "./Progress.svelte";
 
     function handleLogout(event) {
         console.log(event.detail.text);
@@ -26,7 +27,9 @@
     </ion-tab>
 
     <ion-tab tab="tab-progress">
-        <ion-nav></ion-nav>
+        <ion-nav>
+            <Progress/>
+        </ion-nav>
     </ion-tab>
 
     <ion-tab tab="tab-tutorial" component="page-tutorial">
