@@ -1,10 +1,19 @@
 <script lang="ts">
-    import {onMount} from 'svelte';
+    import {createEventDispatcher, onMount} from 'svelte';
     import CardItem from "./CardItem.svelte";
 
     const beUrl = 'https://fun-prom.herokuapp.com';
     const userId = 4444; // TODO: make this dynamic
     let questions: Array<any> = Array();
+
+    const dispatch = createEventDispatcher();
+
+    async function handleLastCard() {
+        console.log("handleButtonClick");
+        dispatch('message', {
+            text: 'noMoreQuestions!'
+        });
+    }
 
     const fetchQuestions = async () => {
         const options = {
@@ -21,7 +30,9 @@
 
     onMount(async () => {
         questions = await fetchQuestions();
-        setTimeout(function(){ renderStackedCards(questions) }, 100);
+        setTimeout(function () {
+            renderStackedCards(questions, handleLastCard)
+        }, 100);
     });
 
 </script>

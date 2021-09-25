@@ -33,7 +33,9 @@
     </ion-tab>
 
     <ion-tab tab="tab-tutorial" component="page-tutorial">
-        <ion-nav><Tutorial/></ion-nav>
+        <ion-nav>
+            <Tutorial/>
+        </ion-nav>
     </ion-tab>
 
     <ion-tab tab="tab-logout" component="page-logout">
@@ -44,7 +46,7 @@
         <ion-tab-button tab="tab-schedule">
             <ion-icon name="calendar"></ion-icon>
             <ion-label>Schedule</ion-label>
-            <ion-badge>6</ion-badge>
+            <ion-badge>2</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button tab="tab-progress">

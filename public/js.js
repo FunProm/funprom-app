@@ -1,4 +1,6 @@
-function renderStackedCards(questions) {
+var questionIndex = 0;
+
+function renderStackedCards(questions, callback) {
     var stackedOptions = 'Top'; //Change stacked cards view from 'Bottom', 'Top' or 'None'.
     var rotate = true; //Activate the elements' rotation for each move on stacked cards.
     var items = 3; //Number of visible elements when the stacked options are bottom or top.
@@ -22,7 +24,7 @@ function renderStackedCards(questions) {
     var elTrans;
     var addMargin;
 
-    let questionIndex = 0;
+    questionIndex = 0;
 
     obj = document.getElementById('stacked-cards-block');
     stackedCardsObj = obj.querySelector('.stackedcards-container');
@@ -761,6 +763,7 @@ function renderStackedCards(questions) {
         }
 
     }
+
     // FIXME make the isLeft etc. easier to understand
     // function isLeft(translateX, height){
     //     return translateX < -1*height/2;
@@ -798,15 +801,13 @@ function renderStackedCards(questions) {
                     backToMiddle();
                 }
 
-            } else if(translateY > (elementHeight) && translateX > ((listElNodesWidth / 2) * -1) && translateX < (listElNodesWidth / 2)){ //is Bottom?
+            } else if (translateY > (elementHeight) && translateX > ((listElNodesWidth / 2) * -1) && translateX < (listElNodesWidth / 2)) { //is Bottom?
                 if (translateY > (elementHeight) || (Math.abs(translateY) / timeTaken > velocity)) { // Did It Move To Bottom?
                     onSwipeBottom();
                 } else {
                     backToMiddle();
                 }
-            }
-
-            else {
+            } else {
 
                 if (translateX < 0) {
                     if (translateX < ((listElNodesWidth / 2) * -1) || (Math.abs(translateX) / timeTaken > velocity)) { // Did It Move To Left?
@@ -855,7 +856,7 @@ function renderStackedCards(questions) {
     buttonBottom.addEventListener('click', onActionBottom, false);
     buttonSkip.addEventListener('click', onActionSkip, false);
 
-    async function sendAnswer(answer){
+    async function sendAnswer(answer) {
         const url = 'https://fun-prom.herokuapp.com/question/4444';
         const options = {
             method: 'POST',
@@ -870,5 +871,8 @@ function renderStackedCards(questions) {
         };
         await fetch(url, options);
         questionIndex++;
+        if (questionIndex === questions.length) {
+            callback();
+        }
     }
 }
