@@ -1,6 +1,7 @@
 <script lang="ts">
     import Login from "./Login.svelte";
     import Logout from "./Logout.svelte";
+    import Tutorial from "./Tutorial.svelte";
 
     let user = {loggedIn: false};
 
@@ -19,6 +20,6 @@
 {#if !user.loggedIn}
     <Login on:message={handleLogin}/>
 {:else}
-    <p>LoggedIn</p>
     <Logout on:message={handleLogout}/>
+    <Tutorial/>
 {/if}
