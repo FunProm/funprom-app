@@ -6,6 +6,7 @@
     import {getAuth, onAuthStateChanged} from "firebase/auth";
     import {session} from './stores';
     import CardStackController from "./CardStackController.svelte";
+    import WellDone from "./WellDone.svelte";
 
     onAuthStateChanged(getAuth(), (user) => {
         if (user) {
@@ -32,4 +33,5 @@
     <Route path="/survey">
         <CardStackController/>
     </Route>
+   <Route path="/well-done/:category" component="{WellDone}"/>
 </Router>

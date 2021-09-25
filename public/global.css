@@ -188,3 +188,12 @@
 	width: 17px;
 	display: none;
 }
+
+.well-done-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.well-done-element {
+	padding: 20px;
+}

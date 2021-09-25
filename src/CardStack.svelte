@@ -1,6 +1,8 @@
 <script lang="ts">
     import {createEventDispatcher, onMount} from 'svelte';
     import CardItem from "./CardItem.svelte";
+    import {navigate} from "svelte-routing";
+    import {category} from "./WellDone.svelte";
 
     const beUrl = 'https://fun-prom.herokuapp.com';
     const userId = 4444; // TODO: make this dynamic
@@ -31,7 +33,7 @@
     onMount(async () => {
         questions = await fetchQuestions();
         if(questions.length === 1 && questions[0].number === undefined){
-            console.log('no more questions');
+            navigate("/well-done/" + questions[0].category, {replace: true});
             return;
         }
         setTimeout(function(){ renderStackedCards(questions, handleLastCard) }, 100);
