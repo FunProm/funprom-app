@@ -20,7 +20,7 @@
 
     onMount(async () => {
         questions = await fetchQuestions();
-        setTimeout(function(){ renderStackedCards() }, 100);
+        setTimeout(function(){ renderStackedCards(questions) }, 100);
     });
 
 </script>
