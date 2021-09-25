@@ -24,7 +24,7 @@
 </script>
 
 <svelte:head>
-    <title>Login</title>
+    <title>FunProm - Login</title>
 </svelte:head>
 
 <ion-header translucent="true">
