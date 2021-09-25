@@ -2,7 +2,7 @@
     import {navigate} from "svelte-routing";
 
     function handleTutorialEnd() {
-        navigate("/loggedIn", {replace: true});
+        navigate("/", {replace: true});
     }
 </script>
 
