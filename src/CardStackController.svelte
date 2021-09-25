@@ -9,7 +9,7 @@
     }
 
     function returnToStart() {
-        navigate("/loggedIn", {replace: true});
+        navigate("/", {replace: true});
     }
 
 </script>
@@ -17,22 +17,48 @@
 {#if toggle}
     <CardStack on:message="{toggleValue}"/>
 {:else }
-    <ion-card>
-        <img src="assets/img/bjork-live.jpg"/>
-        <ion-card-content>
-            <ion-card-title>
+    <div class="main">
+        <div class="top">
+            <img src="res/thumbs_up.jpg"/>
+            <h1>
                 Great job!
-            </ion-card-title>
+            </h1>
             <p>
                 Do you want to answer even more questions?
             </p>
-        </ion-card-content>
-        <ion-button expand="block" on:click="{toggleValue}" class="ion-no-margin">
-            Yes
-        </ion-button>
-
-        <ion-button expand="block" on:click="{returnToStart}" class="ion-no-margin">
-            No
-        </ion-button>
-    </ion-card>
+        </div>
+        <div class="bottom">
+            <ion-button on:click="{toggleValue}">
+                Yes
+            </ion-button>
+            <br>
+            <ion-button color="light" on:click="{returnToStart}">
+                No
+            </ion-button>
+        </div>
+    </div>
 {/if}
+
+<style>
+    ion-button {
+        width: 100%;
+    }
+
+    .main {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column
+    }
+
+    .top {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .bottom {
+        flex-grow: 0;
+        width: 95%;
+    }
+</style>
